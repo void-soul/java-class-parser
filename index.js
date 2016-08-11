@@ -50,7 +50,7 @@ var typeRegex = '[a-zA-Z0-9\\.<>\\?\\$\\[\\]]+';
 
 var classRegex = new RegExp('(?:(public|private|protected) )?((?:(?:static|abstract|final) ?)*)(class|interface) (' + typeRegex + ') (?:extends ((?:' + typeRegex +'),?)+ )?(?:implements ((?:[a-zA-Z0-9\\.<>\\?\\$])+,?)+ )?{([^}]+)}', 'gm');
 //                             access modifier              return value             name
-var methodRegex = new RegExp('(?:(public|private|protected) )?((?:static|abstract|final) ?)*(?:(' + typeRegex + ') )?([a-zA-Z]+)\\(([^\\)]*)\\)');
+var methodRegex = new RegExp('(?:(public|private|protected) )?((?:static|abstract|final) ?)*(?:(' + typeRegex + ') )?([a-zA-Z0-9]+)\\(([^\\)]*)\\)');
 
 
 var fieldRegex = new RegExp('(?:(public|private|protected) )?((?:(?:static|abstract|final) ?)*)(' + typeRegex + ') ([a-zA-Z0-9]+)');
@@ -109,9 +109,10 @@ function outputParser(output) {
           scope: scope,
           name: name,
           describe: describe,
-          args: args ? args.split(',').map(trimStr) : []
+          args: args ? args.replace(/\<[^\>]+\>/g,function(str){
+            return str.replace(/,/g,"-");
+          }).split(',').map(trimStr) : []
         };
-
         clz.constructors.push(cons);
       }else {
         var m = {
@@ -119,9 +120,10 @@ function outputParser(output) {
           describe: describe,
           ret: retVal,
           name: name,
-          args: args ? args.split(',').map(trimStr) : []
+          args: args ? args.replace(/\<[^\>]+\>/g,function(str){
+            return str.replace(/,/g,"-");
+          }).split(',').map(trimStr) : []
         };
-
         clz.methods.push(m);
       }
     });
@@ -137,5 +139,5 @@ function outputParser(output) {
 
 
 function trimStr(str) {
-  return str.trim();
+  return str.trim().replace(/-/,',');
 }

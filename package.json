@@ -1,7 +1,7 @@
 {
-  "name": "java-class-parser",
-  "version": "0.2.1",
-  "description": "java-class-parser",
+  "name": "java-class-parser-generics",
+  "version": "0.0.2",
+  "description": "java-class-parser-generics",
   "main": "index.js",
   "bin": {
     "jjs-parser": "./bin/jjs-parser.js"
@@ -21,7 +21,7 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "author": "villadora",
+  "author": "ccsharp",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/villadora/java-class-parser/issues"
