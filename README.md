@@ -1,7 +1,7 @@
 # Java Class Parser -Generics[![NPM version](https://badge.fury.io/js/java-class-parser.svg)](http://badge.fury.io/js/java-class-parser) [![Build Status](https://travis-ci.org/villadora/java-class-parser.svg?branch=master)](https://travis-ci.org/villadora/java-class-parser)
 
 A simple lib wrapped `javap` to parse java .class files into json format. Only parse public members by default.
-【fix Map<generics>】
+【fix Map generics】
 ## Install
 
 ```bash
